@@ -40,7 +40,7 @@ import { Component } from '@angular/core';
       <div *ngFor="let keg of kegs">
         <div class="row">
           <div class="col-xs-1">
-            <button class="btn-xs">SELL</button>
+            <button (click)="sellPint(keg)" class="btn-xs">SELL</button>
           </div>
           <div class="col-xs-2">
             <p>{{keg.name}} ({{keg.pintsLeft}})</p>
@@ -107,6 +107,10 @@ export class AppComponent {
 
   editDone() {
     this.editBeer = false;
+  }
+
+  sellPint(keg) {
+    keg.pintsLeft -= 1;
   }
 }
 
