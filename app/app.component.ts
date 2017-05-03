@@ -21,7 +21,8 @@ import { Component } from '@angular/core';
       </div>
       <div>
         <div class="row">
-          <div class="col-xs-1">
+          <div class="col-xs-3">
+            <h3>Sales</h3>
           </div>
           <div class="col-xs-2">
             <h3>Beer</h3>
@@ -37,10 +38,12 @@ import { Component } from '@angular/core';
           </div>
         </div>
       </div>
-      <div *ngFor="let keg of kegs">
+      <div *ngFor="let keg of kegs" [class]="kickWarning(keg)">
         <div class="row">
-          <div class="col-xs-1">
-            <button (click)="sellPint(keg)" class="btn-xs">SELL</button>
+          <div class="col-xs-3">
+            <button (click)="sellPint(keg, 1)" class="btn-xs">PINT</button>
+            <button (click)="sellPint(keg, 2)" class="btn-xs">GRUMBLER</button>
+            <button (click)="sellPint(keg, 4)" class="btn-xs">GROWLER</button>
           </div>
           <div class="col-xs-2">
             <p>{{keg.name}} ({{keg.pintsLeft}})</p>
@@ -111,12 +114,20 @@ export class AppComponent {
     this.editBeer = false;
   }
 
-  sellPint(keg) {
-    keg.pintsLeft -= 1;
+  sellPint(keg, amount) {
+    keg.pintsLeft -= amount;
+  }
+
+  kickWarning(keg) {
+    if (keg.pintsLeft <= 0) {
+      return "bg-danger";
+    } else if (keg.pintsLeft <= 10) {
+      return "bg-warning";
+    }
   }
 }
 
 export class Keg {
-  public pintsLeft: number = 124;
+  public pintsLeft: number = 15;
   constructor(public name: string, public brewery: string, public price: number, public alcoholContent: number) { }
 }
