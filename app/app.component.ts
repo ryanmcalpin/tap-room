@@ -60,13 +60,15 @@ import { Component } from '@angular/core';
         </div>
       </div>
       <div *ngIf="editBeer">
-        <label>Beer</label>
+        <label>Beer:</label>
         <input [(ngModel)]="selectedKeg.name">
-        <label>Brewery</label>
+        <label>Pints Left:</label>
+        <input [(ngModel)]="selectedKeg.pintsLeft" type="number">
+        <label>Brewery:</label>
         <input [(ngModel)]="selectedKeg.brewery">
-        <label>ABV</label>
+        <label>ABV:</label>
         <input [(ngModel)]="selectedKeg.alcoholContent" type="number">
-        <label>Price</label>
+        <label>Price:</label>
         <input [(ngModel)]="selectedKeg.price" type="number">
         <button (click)="editDone()" class="btn-sm">DONE</button>
       </div>
