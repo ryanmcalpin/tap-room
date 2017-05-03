@@ -15,7 +15,7 @@ import { Component } from '@angular/core';
         <label>ABV</label>
         <input #newAlcoholContent type="number" step="0.1"><br>
         <label>Price</label>
-        <input #newPrice type="number"><br>
+        <input #newPrice type="number" step="0.25"><br>
         <button (click)="saveBeer(newName.value, newBrewery.value, newPrice.value, newAlcoholContent.value)" class="btn-sm">TAP KEG</button>
         <button (click)="cancel()" class="btn-sm">CANCEL</button>
       </div>
@@ -33,7 +33,7 @@ import { Component } from '@angular/core';
           <div class="col-xs-2">
             <h3>Alcohol %</h3>
           </div>
-          <div class="col-xs-2">
+          <div class="col-xs-3">
             <h3>Price</h3>
           </div>
         </div>
@@ -54,7 +54,7 @@ import { Component } from '@angular/core';
           <div class="col-xs-2">
             <p [class]="abvStyle(keg)">{{keg.alcoholContent}}% ABV</p>
           </div>
-          <div class="col-xs-1">
+          <div class="col-xs-2">
             <p [class]="priceStyle(keg)">\${{keg.price}} / pint</p>
           </div>
           <div class="col-xs-1">
@@ -72,7 +72,7 @@ import { Component } from '@angular/core';
         <label>ABV:</label>
         <input [(ngModel)]="selectedKeg.alcoholContent" type="number" step="0.1">
         <label>Price:</label>
-        <input [(ngModel)]="selectedKeg.price" type="number">
+        <input [(ngModel)]="selectedKeg.price" type="number" step="0.25">
         <button (click)="editDone()" class="btn-xs">DONE</button>
       </div>
   </div>
