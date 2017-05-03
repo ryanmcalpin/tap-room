@@ -6,6 +6,18 @@ import { Component } from '@angular/core';
   <div class="container">
       <h1>Tap Room</h1>
       <h2>Beer List</h2>
+      <button (click)="addBeer()">TAP KEG</button>
+      <div *ngIf="newBeer">
+        <label>Beer</label>
+        <input id="newName"><br>
+        <label>Brewery</label>
+        <input id="newBrewery"><br>
+        <label>ABV</label>
+        <input id="newPrice"><br>
+        <label>Price</label>
+        <input id="newAlcoholContent"><br>
+        <button (click)="saveBeer()">FINISHED</button>
+      </div>
       <div>
         <div class="row">
           <div class="col-xs-2">
@@ -25,7 +37,7 @@ import { Component } from '@angular/core';
       <div *ngFor="let keg of kegs">
         <div class="row">
           <div class="col-xs-2">
-            <p>{{keg.name}}</p>
+            <p>{{keg.name}} ({{keg.pintsLeft}})</p>
           </div>
           <div class="col-xs-2">
             <p>{{keg.brewery}}</p>
@@ -47,6 +59,15 @@ export class AppComponent {
     new Keg("Black Butte Porter", "Deschutes Brewery", 4, 5.2),
     new Keg("Rainier", "Rainier Beer", 2, 4.6)
   ]
+  newBeer = false;
+
+  addBeer() {
+    this.newBeer = true;
+  }
+
+  saveBeer() {
+    this.newBeer = false;
+  }
 }
 
 export class Keg {
