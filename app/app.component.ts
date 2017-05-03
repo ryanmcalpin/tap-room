@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
       <h1>Tap Room</h1>
       <h2>Beer List</h2>
       <button *ngIf="newBeer===false" (click)="addBeer()" class="btn-lg">TAP KEG</button>
-      <form *ngIf="newBeer">
+      <div *ngIf="newBeer">
         <label>Beer</label>
         <input #newName><br>
         <label>Brewery</label>
@@ -18,7 +18,7 @@ import { Component } from '@angular/core';
         <input #newPrice type="number"><br>
         <button (click)="saveBeer(newName.value, newBrewery.value, newPrice.value, newAlcoholContent.value)" class="btn-sm">TAP KEG</button>
         <button (click)="cancel()" class="btn-sm">CANCEL</button>
-      </form>
+      </div>
       <div>
         <div class="row">
           <div class="col-xs-1">
@@ -59,18 +59,17 @@ import { Component } from '@angular/core';
           </div>
         </div>
       </div>
-      <form *ngIf="editBeer">
+      <div *ngIf="editBeer">
         <label>Beer</label>
-        <input >
+        <input [(ngModel)]="selectedKeg.name">
         <label>Brewery</label>
-        <input >
+        <input [(ngModel)]="selectedKeg.brewery">
         <label>ABV</label>
-        <input type="number">
+        <input [(ngModel)]="selectedKeg.alcoholContent" type="number">
         <label>Price</label>
-        <input type="number">
-        <button (click)="saveEdit()" class="btn-sm">TAP KEG</button>
-        <button (click)="cancelEdit()" class="btn-sm">CANCEL</button>
-      </form>
+        <input [(ngModel)]="selectedKeg.price" type="number">
+        <button (click)="editDone()" class="btn-sm">DONE</button>
+      </div>
   </div>
   `
 })
@@ -102,11 +101,11 @@ export class AppComponent {
   }
 
   editKeg(keg) {
-    // this.selectedKeg = keg;
     this.editBeer = true;
+    this.selectedKeg = keg;
   }
 
-  cancelEdit() {
+  editDone() {
     this.editBeer = false;
   }
 }
