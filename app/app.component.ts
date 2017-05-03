@@ -105,7 +105,7 @@ export class AppComponent {
     this.newBeer = false;
   }
 
-  editKeg(keg) {
+  editKeg(keg: Keg) {
     this.editBeer = true;
     this.selectedKeg = keg;
   }
@@ -114,11 +114,11 @@ export class AppComponent {
     this.editBeer = false;
   }
 
-  sellPint(keg, amount) {
+  sellPint(keg: Keg, amount: number) {
     keg.pintsLeft -= amount;
   }
 
-  kickWarning(keg) {
+  kickWarning(keg: Keg) {
     if (keg.pintsLeft <= 0) {
       return "bg-danger";
     } else if (keg.pintsLeft <= 10) {
@@ -126,7 +126,7 @@ export class AppComponent {
     }
   }
 
-  priceStyle(keg) {
+  priceStyle(keg: Keg) {
     if (keg.price <= 2) {
       return "cheap";
     } else if (keg.price >= 5) {
@@ -134,7 +134,7 @@ export class AppComponent {
     }
   }
 
-  abvStyle(keg) {
+  abvStyle(keg: Keg) {
     if (keg.alcoholContent >= 7) {
       return "bold";
     }
@@ -142,6 +142,6 @@ export class AppComponent {
 }
 
 export class Keg {
-  public pintsLeft: number = 24;
+  public pintsLeft: number = 124;
   constructor(public name: string, public brewery: string, public price: number, public alcoholContent: number) { }
 }
