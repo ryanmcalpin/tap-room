@@ -66,6 +66,7 @@ export class AppComponent {
   }
 
   saveBeer() {
+    this.kegs.push(new Keg($('#newName').val(), $('#newBrewery').val(), $('#newPrice').val(), $('#newAlcoholContent').val()));
     this.newBeer = false;
   }
 }
