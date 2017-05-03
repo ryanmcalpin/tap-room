@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
         <label>Brewery</label>
         <input #newBrewery><br>
         <label>ABV</label>
-        <input #newAlcoholContent type="number"><br>
+        <input #newAlcoholContent type="number" step="0.1"><br>
         <label>Price</label>
         <input #newPrice type="number"><br>
         <button (click)="saveBeer(newName.value, newBrewery.value, newPrice.value, newAlcoholContent.value)" class="btn-sm">TAP KEG</button>
@@ -52,10 +52,10 @@ import { Component } from '@angular/core';
             <p>{{keg.brewery}}</p>
           </div>
           <div class="col-xs-2">
-            <p>{{keg.alcoholContent}}% ABV</p>
+            <p [class]="abvStyle(keg)">{{keg.alcoholContent}}% ABV</p>
           </div>
-          <div class="col-xs-2">
-            <p>\${{keg.price}} / pint</p>
+          <div class="col-xs-1">
+            <p [class]="priceStyle(keg)">\${{keg.price}} / pint</p>
           </div>
           <div class="col-xs-1">
             <button (click)="editKeg(keg)" class="btn-xs">EDIT</button>
@@ -66,14 +66,14 @@ import { Component } from '@angular/core';
         <label>Beer:</label>
         <input [(ngModel)]="selectedKeg.name">
         <label>Pints Left:</label>
-        <input [(ngModel)]="selectedKeg.pintsLeft" type="number">
+        <input [(ngModel)]="selectedKeg.pintsLeft" type="number" id="editPints">
         <label>Brewery:</label>
         <input [(ngModel)]="selectedKeg.brewery">
         <label>ABV:</label>
-        <input [(ngModel)]="selectedKeg.alcoholContent" type="number">
+        <input [(ngModel)]="selectedKeg.alcoholContent" type="number" step="0.1">
         <label>Price:</label>
         <input [(ngModel)]="selectedKeg.price" type="number">
-        <button (click)="editDone()" class="btn-sm">DONE</button>
+        <button (click)="editDone()" class="btn-xs">DONE</button>
       </div>
   </div>
   `
@@ -125,9 +125,23 @@ export class AppComponent {
       return "bg-warning";
     }
   }
+
+  priceStyle(keg) {
+    if (keg.price <= 2) {
+      return "cheap";
+    } else if (keg.price >= 5) {
+      return "expensive";
+    }
+  }
+
+  abvStyle(keg) {
+    if (keg.alcoholContent >= 7) {
+      return "bold";
+    }
+  }
 }
 
 export class Keg {
-  public pintsLeft: number = 15;
+  public pintsLeft: number = 24;
   constructor(public name: string, public brewery: string, public price: number, public alcoholContent: number) { }
 }
