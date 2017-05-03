@@ -6,20 +6,23 @@ import { Component } from '@angular/core';
   <div class="container">
       <h1>Tap Room</h1>
       <h2>Beer List</h2>
-      <button (click)="addBeer()">TAP KEG</button>
-      <div *ngIf="newBeer">
+      <button *ngIf="newBeer===false" (click)="addBeer()" class="btn-lg">TAP KEG</button>
+      <form *ngIf="newBeer">
         <label>Beer</label>
-        <input id="newName"><br>
+        <input #newName><br>
         <label>Brewery</label>
-        <input id="newBrewery"><br>
+        <input #newBrewery><br>
         <label>ABV</label>
-        <input id="newPrice"><br>
+        <input #newAlcoholContent type="number"><br>
         <label>Price</label>
-        <input id="newAlcoholContent"><br>
-        <button (click)="saveBeer()">FINISHED</button>
-      </div>
+        <input #newPrice type="number"><br>
+        <button (click)="saveBeer(newName.value, newBrewery.value, newPrice.value, newAlcoholContent.value)" class="btn-sm">TAP KEG</button>
+        <button (click)="cancel()" class="btn-sm">CANCEL</button>
+      </form>
       <div>
         <div class="row">
+          <div class="col-xs-1">
+          </div>
           <div class="col-xs-2">
             <h3>Beer</h3>
           </div>
@@ -36,6 +39,9 @@ import { Component } from '@angular/core';
       </div>
       <div *ngFor="let keg of kegs">
         <div class="row">
+          <div class="col-xs-1">
+            <button class="btn-xs">SELL</button>
+          </div>
           <div class="col-xs-2">
             <p>{{keg.name}} ({{keg.pintsLeft}})</p>
           </div>
@@ -48,8 +54,23 @@ import { Component } from '@angular/core';
           <div class="col-xs-2">
             <p>\${{keg.price}} / pint</p>
           </div>
+          <div class="col-xs-1">
+            <button (click)="editKeg(keg)" class="btn-xs">EDIT</button>
+          </div>
         </div>
       </div>
+      <form *ngIf="editBeer">
+        <label>Beer</label>
+        <input >
+        <label>Brewery</label>
+        <input >
+        <label>ABV</label>
+        <input type="number">
+        <label>Price</label>
+        <input type="number">
+        <button (click)="saveEdit()" class="btn-sm">TAP KEG</button>
+        <button (click)="cancelEdit()" class="btn-sm">CANCEL</button>
+      </form>
   </div>
   `
 })
@@ -60,14 +81,33 @@ export class AppComponent {
     new Keg("Rainier", "Rainier Beer", 2, 4.6)
   ]
   newBeer = false;
+  editBeer = false;
+  selectedKeg = null;
 
   addBeer() {
     this.newBeer = true;
   }
 
-  saveBeer() {
-    this.kegs.push(new Keg($('#newName').val(), $('#newBrewery').val(), $('#newPrice').val(), $('#newAlcoholContent').val()));
+  saveBeer(name: string, brewery: string, price: number, alcoholContent: number) {
+    if (name==='' || brewery==='' || price<=0 || alcoholContent<=0) {
+      alert("Please fill in all the fields!");
+    } else {
+      this.kegs.push(new Keg(name, brewery, price, alcoholContent));
+      this.newBeer = false;
+    }
+  }
+
+  cancel() {
     this.newBeer = false;
+  }
+
+  editKeg(keg) {
+    // this.selectedKeg = keg;
+    this.editBeer = true;
+  }
+
+  cancelEdit() {
+    this.editBeer = false;
   }
 }
 
