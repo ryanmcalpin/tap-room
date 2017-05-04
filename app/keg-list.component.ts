@@ -23,15 +23,16 @@ import { Keg } from './keg.model';
       </div>
     </div>
   </div>
-  <div *ngFor="let keg of childKegs" [class]="kickWarning(keg)">
+  <div *ngFor="let keg of childKegs | price" [class]="kickWarning(keg)">
     <div class="row">
       <div class="col-xs-3">
         <button (click)="sellPint(keg, 1)" class="btn-xs">PINT</button>
         <button (click)="sellPint(keg, 2)" class="btn-xs">GRUMBLER</button>
         <button (click)="sellPint(keg, 4)" class="btn-xs">GROWLER</button>
+        ({{keg.pintsLeft}})
       </div>
       <div class="col-xs-2">
-        <p>{{keg.name}} ({{keg.pintsLeft}})</p>
+        <p>{{keg.name}}</p>
       </div>
       <div class="col-xs-2">
         <p>{{keg.brewery}}</p>

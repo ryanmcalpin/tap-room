@@ -17,8 +17,10 @@ import { Keg } from './keg.model';
 
 export class AppComponent {
   kegs: Keg[] = [
-    new Keg("Black Butte Porter", "Deschutes Brewery", 4, 5.2),
-    new Keg("Rainier", "Rainier Beer", 2, 4.6)
+    new Keg("Black Butte Porter", "Deschutes", 4, 5.2),
+    new Keg("Rainier", "Rainier", 2, 4.6),
+    new Keg("Pliny the Elder", "Russian River", 6.5, 8),
+    new Keg("Litha", "Propolis", 8, 7.5)
   ]
   newBeer = false;
   selectedKeg = null;
