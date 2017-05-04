@@ -41,7 +41,7 @@ import { Keg } from './keg.model';
         <p [class]="abvStyle(keg)">{{keg.alcoholContent}}% ABV</p>
       </div>
       <div class="col-xs-2">
-        <p [class]="priceStyle(keg)">\${{keg.price}} / pint</p>
+        <p [class]="priceStyle(keg)">\${{keg.price | number:'1.2-2'}} / pint</p>
       </div>
       <div class="col-xs-1">
         <button (click)="editButtonClick(keg)" class="btn-xs">EDIT</button>
