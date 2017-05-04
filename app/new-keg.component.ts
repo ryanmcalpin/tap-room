@@ -6,13 +6,13 @@ import { Keg } from './keg.model';
   template:`
   <div *ngIf="newBeer">
     <label>Beer</label>
-    <input #newName><br>
+    <input #newName class="form-control"><br>
     <label>Brewery</label>
-    <input #newBrewery><br>
+    <input #newBrewery class="form-control"><br>
     <label>ABV</label>
-    <input #newAlcoholContent type="number" step="0.1"><br>
+    <input #newAlcoholContent type="number" step="0.1" class="form-control"><br>
     <label>Price</label>
-    <input #newPrice type="number" step="0.25"><br>
+    <input #newPrice type="number" step="0.25" class="form-control"><br>
     <button (click)="saveBeer(newName.value, newBrewery.value, newPrice.value, newAlcoholContent.value)" class="btn-sm">TAP KEG</button>
     <button (click)="cancel()" class="btn-sm">CANCEL</button>
   </div>
