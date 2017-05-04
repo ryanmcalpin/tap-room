@@ -30,11 +30,11 @@ button:hover {
 }
 
 .cheap {
-  background-color: yellow;
+  text-shadow: 1px 1px #ccc545;
 }
 
 .expensive {
-  background-color: red;
+  text-shadow: 1px 1px #ff6666;
 }
 
 p {
