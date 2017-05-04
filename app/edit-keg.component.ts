@@ -27,21 +27,18 @@ export class EditKegComponent {
 
   ngOnInit() {
     if (this.selectedKeg) {
-
       window.scrollTo(0,document.body.scrollHeight);
     }
   }
 
   ngAfterViewChecked() {
     if (this.selectedKeg) {
-
       window.scrollTo(0,document.body.scrollHeight);
     }
   }
 
   scrollToBottom(): void {
     if (this.selectedKeg) {
-
       try {
         this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
       } catch(err) { }
