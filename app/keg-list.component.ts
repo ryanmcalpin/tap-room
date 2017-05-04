@@ -19,11 +19,11 @@ import { Keg } from './keg.model';
         <h3>Alcohol %</h3>
       </div>
       <div class="col-xs-3">
-        <h3>Price</h3>
+        <h3 (click)="togglePriceSort()">Price</h3>
       </div>
     </div>
   </div>
-  <div *ngFor="let keg of childKegs | price" [class]="kickWarning(keg)">
+  <div *ngFor="let keg of childKegs | price:priceFilter" [class]="kickWarning(keg)">
     <div class="row">
       <div class="col-xs-3">
         <button (click)="sellPint(keg, 1)" class="btn-xs">PINT</button>
@@ -55,6 +55,8 @@ export class KegListComponent {
   @Input() childKegs: Keg[];
   @Output() clickSender = new EventEmitter();
 
+  priceFilter: string = null;
+
   sellPint(keg: Keg, amount: number) {
     keg.pintsLeft -= amount;
   }
@@ -83,5 +85,13 @@ export class KegListComponent {
 
   editButtonClick(keg: Keg) {
     this.clickSender.emit(keg);
+  }
+
+  togglePriceSort() {
+    if (this.priceFilter === "l2h") {
+      this.priceFilter = "h2l";
+    } else {
+      this.priceFilter = "l2h";
+    }
   }
 }
