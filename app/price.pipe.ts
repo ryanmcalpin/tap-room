@@ -11,11 +11,11 @@ export class PricePipe implements PipeTransform {
     if (filterBy === "name" || filterBy === "brewery") {
       if (filter === "l2h") {
         input.sort(function(a, b) {
-          return (a[filterBy] > b[filterBy]) ? -1 : (a[filterBy] < b[filterBy]) ? 1 : 0;
+          return (a[filterBy].toUpperCase() > b[filterBy].toUpperCase()) ? -1 : (a[filterBy].toUpperCase() < b[filterBy].toUpperCase()) ? 1 : 0;
         });
       } else if (filter === "h2l") {
         input.sort(function(a, b) {
-          return (a[filterBy] < b[filterBy]) ? -1 : (a[filterBy] > b[filterBy]) ? 1 : 0;
+          return (a[filterBy].toUpperCase() < b[filterBy].toUpperCase()) ? -1 : (a[filterBy].toUpperCase() > b[filterBy].toUpperCase()) ? 1 : 0;
         });
       }
     } else if (filterBy === "alcoholContent" || filterBy === "price") {
