@@ -8,21 +8,8 @@ import { Keg } from './keg.model';
       <h1>Tap Room</h1>
       <h2>Beer List</h2>
       <button *ngIf="newBeer===false" (click)="addBeer()" class="btn-lg">TAP KEG</button>
-      <div *ngIf="newBeer">
-        <label>Beer</label>
-        <input #newName><br>
-        <label>Brewery</label>
-        <input #newBrewery><br>
-        <label>ABV</label>
-        <input #newAlcoholContent type="number" step="0.1"><br>
-        <label>Price</label>
-        <input #newPrice type="number" step="0.25"><br>
-        <button (click)="saveBeer(newName.value, newBrewery.value, newPrice.value, newAlcoholContent.value)" class="btn-sm">TAP KEG</button>
-        <button (click)="cancel()" class="btn-sm">CANCEL</button>
-      </div>
-
+      <new-keg [newBeer]="newBeer" (newKegSender)="addKeg($event)" (cancelSender)="cancel($event)"></new-keg>
       <keg-list [childKegs]="kegs" (clickSender)="editKeg($event)"></keg-list>
-
       <edit-keg [selectedKeg]="selectedKeg" (doneButtonClickSender)="editDone()"></edit-keg>
   </div>
   `
@@ -40,19 +27,6 @@ export class AppComponent {
     this.newBeer = true;
   }
 
-  saveBeer(name: string, brewery: string, price: number, alcoholContent: number) {
-    if (name==='' || brewery==='' || price<=0 || alcoholContent<=0) {
-      alert("Please fill in all the fields!");
-    } else {
-      this.kegs.push(new Keg(name, brewery, price, alcoholContent));
-      this.newBeer = false;
-    }
-  }
-
-  cancel() {
-    this.newBeer = false;
-  }
-
   editKeg(keg: Keg) {
     this.selectedKeg = keg;
   }
@@ -61,4 +35,12 @@ export class AppComponent {
     this.selectedKeg = null;
   }
 
+  addKeg(keg: Keg) {
+    this.kegs.push(keg);
+    this.newBeer = false;
+  }
+
+  cancel(boo) {
+    this.newBeer = boo;
+  }
 }
