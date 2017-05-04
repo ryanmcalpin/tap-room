@@ -7,7 +7,7 @@ import { Keg } from './keg.model';
   <div>
     <div class="row titles">
       <div class="col-xs-3">
-        <h3 (click)="toggleSort('pintsLeft')" class="sortTitle">Sales <span *ngIf="filterBy==='pintsLeft'" class="sortArrows">{{filterArrow}}</span></h3>
+        <h3 (click)="toggleSort('pintsLeft')" class="sortTitle">Sales <span class="sortArrows">(pints left) </span><span *ngIf="filterBy==='pintsLeft'" class="sortArrows">{{filterArrow}}</span></h3>
       </div>
       <div class="col-xs-2">
         <h3 (click)="toggleSort('name')" class="sortTitle">Beer <span *ngIf="filterBy==='name'" class="sortArrows">{{filterArrow}}</span></h3>
@@ -60,6 +60,9 @@ export class KegListComponent {
   filterArrow: string = null;
 
   sellPint(keg: Keg, amount: number) {
+    if (this.filterBy === "pintsLeft")  {
+      this.filterBy = null;
+    }
     keg.pintsLeft -= amount;
   }
 
