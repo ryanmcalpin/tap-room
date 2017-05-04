@@ -6,6 +6,10 @@ button:hover {
   background-color: darkgrey;
 }
 
+.titles {
+  color: darkblue;
+}
+
 .sortTitle {
   -webkit-touch-callout: none; /* iOS Safari */
    -webkit-user-select: none; /* Safari */
@@ -17,16 +21,12 @@ button:hover {
 
 .sortTitle:hover {
   cursor: pointer;
-  color: darkblue;
+  color: blue;
 }
 
 .sortArrows {
   font-size: 12px;
   vertical-align: middle;
-}
-
-#editPints {
-  width: 42px;
 }
 
 .cheap {
@@ -44,4 +44,10 @@ p {
 
 .bold {
   font-weight: bold;
+}
+
+.kegTile {
+  margin-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }

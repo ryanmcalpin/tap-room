@@ -5,9 +5,9 @@ import { Keg } from './keg.model';
   selector: 'keg-list',
   template: `
   <div>
-    <div class="row">
+    <div class="row titles">
       <div class="col-xs-3">
-        <h3>Sales</h3>
+        <h3 (click)="toggleSort('pintsLeft')" class="sortTitle">Sales <span *ngIf="filterBy==='pintsLeft'" class="sortArrows">{{filterArrow}}</span></h3>
       </div>
       <div class="col-xs-2">
         <h3 (click)="toggleSort('name')" class="sortTitle">Beer <span *ngIf="filterBy==='name'" class="sortArrows">{{filterArrow}}</span></h3>
@@ -24,7 +24,7 @@ import { Keg } from './keg.model';
     </div>
   </div>
   <div *ngFor="let keg of childKegs | price:filterBy:filter" [class]="kickWarning(keg)">
-    <div class="row">
+    <div class="row kegTile panel panel-default">
       <div class="col-xs-3">
         <button (click)="sellPint(keg, 1)" class="btn-xs">PINT</button>
         <button (click)="sellPint(keg, 2)" class="btn-xs">GRUMBLER</button>

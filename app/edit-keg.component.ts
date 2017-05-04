@@ -5,10 +5,10 @@ import { Keg } from './keg.model';
   selector: 'edit-keg',
   template:`
   <div *ngIf="selectedKeg">
-    <label>Beer:</label>
-    <input [(ngModel)]="selectedKeg.name">
     <label>Pints Left:</label>
     <input [(ngModel)]="selectedKeg.pintsLeft" type="number" id="editPints">
+    <label>Beer:</label>
+    <input [(ngModel)]="selectedKeg.name">
     <label>Brewery:</label>
     <input [(ngModel)]="selectedKeg.brewery">
     <label>ABV:</label>

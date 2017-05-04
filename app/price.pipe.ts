@@ -18,7 +18,7 @@ export class PricePipe implements PipeTransform {
           return (a[filterBy].toUpperCase() < b[filterBy].toUpperCase()) ? -1 : (a[filterBy].toUpperCase() > b[filterBy].toUpperCase()) ? 1 : 0;
         });
       }
-    } else if (filterBy === "alcoholContent" || filterBy === "price") {
+    } else if (filterBy === "alcoholContent" || filterBy === "price" || filterBy === "pintsLeft") {
       if (filter === "l2h") {
         input.sort(function(a, b) {
           return a[filterBy] - b[filterBy];
