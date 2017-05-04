@@ -16,10 +16,10 @@ import { Keg } from './keg.model';
         <h3>Brewery</h3>
       </div>
       <div class="col-xs-2">
-        <h3 (click)="toggleSort('abv')">Alcohol %</h3>
+        <h3 (click)="toggleSort('abv')" class="sortTitle">Alcohol % <span *ngIf="filterBy==='abv'" class="sortArrows">{{filterArrow}}</span></h3>
       </div>
       <div class="col-xs-3">
-        <h3 (click)="toggleSort('price')">Price</h3>
+        <h3 (click)="toggleSort('price')" class="sortTitle">Price <span *ngIf="filterBy==='price'" class="sortArrows">{{filterArrow}}</span></h3>
       </div>
     </div>
   </div>
@@ -57,6 +57,7 @@ export class KegListComponent {
 
   filter: string = null;
   filterBy: string = null;
+  filterArrow: string = null;
 
   sellPint(keg: Keg, amount: number) {
     keg.pintsLeft -= amount;
@@ -90,10 +91,13 @@ export class KegListComponent {
 
   toggleSort(sortBy) {
     this.filterBy = sortBy;
-    if (this.filter === "l2h") {
-      this.filter = "h2l";
-    } else {
+
+    if (this.filter === "h2l") {
       this.filter = "l2h";
+      this.filterArrow = "\\/";
+    } else {
+      this.filter = "h2l";
+      this.filterArrow = "/\\";
     }
   }
 }

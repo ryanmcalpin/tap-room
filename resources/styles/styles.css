@@ -6,6 +6,16 @@ button:hover {
   background-color: darkgrey;
 }
 
+.sortTitle:hover {
+  cursor: pointer;
+  color: darkblue;
+}
+
+.sortArrows {
+  font-size: 12px;
+  vertical-align: middle;
+}
+
 #editPints {
   width: 42px;
 }
