@@ -10,13 +10,13 @@ import { Keg } from './keg.model';
         <h3>Sales</h3>
       </div>
       <div class="col-xs-2">
-        <h3>Beer</h3>
+        <h3 (click)="toggleSort('name')" class="sortTitle">Beer <span *ngIf="filterBy==='name'" class="sortArrows">{{filterArrow}}</span></h3>
       </div>
       <div class="col-xs-2">
-        <h3>Brewery</h3>
+        <h3 (click)="toggleSort('brewery')" class="sortTitle">Brewery <span *ngIf="filterBy==='brewery'" class="sortArrows">{{filterArrow}}</span></h3>
       </div>
       <div class="col-xs-2">
-        <h3 (click)="toggleSort('abv')" class="sortTitle">Alcohol % <span *ngIf="filterBy==='abv'" class="sortArrows">{{filterArrow}}</span></h3>
+        <h3 (click)="toggleSort('alcoholContent')" class="sortTitle">Alcohol % <span *ngIf="filterBy==='alcoholContent'" class="sortArrows">{{filterArrow}}</span></h3>
       </div>
       <div class="col-xs-3">
         <h3 (click)="toggleSort('price')" class="sortTitle">Price <span *ngIf="filterBy==='price'" class="sortArrows">{{filterArrow}}</span></h3>
@@ -94,10 +94,10 @@ export class KegListComponent {
 
     if (this.filter === "h2l") {
       this.filter = "l2h";
-      this.filterArrow = "\\/";
+      this.filterArrow = "/\\";
     } else {
       this.filter = "h2l";
-      this.filterArrow = "/\\";
+      this.filterArrow = "\\/";
     }
   }
 }
